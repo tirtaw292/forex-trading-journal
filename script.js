@@ -303,7 +303,13 @@ function handleTradeSubmit(e) {
     };
     
     // Add to trades array
-    trades.unshift(trade);
+    if (currentEditIndex !== -1) {
+        // Jika edit, simpan di posisi semula
+        trades.splice(currentEditIndex, 0, trade);
+    } else {
+        // Jika baru, tambahkan di awal
+        trades.unshift(trade);
+    }
     
     // Update balance
     const newBalance = parseFloat(elements.accountBalance.value) + trade.pnl;
@@ -336,6 +342,7 @@ function resetTradeForm() {
     elements.submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Trade';
     elements.cancelEdit.style.display = 'none';
     document.querySelector('#journal h3').textContent = 'Add Trade';
+    document.getElementById('trade-form').classList.remove('edit-mode');
     currentEditIndex = -1;
 }
 
@@ -390,12 +397,10 @@ function editTrade(index) {
 // Cancel Edit
 function cancelEditTrade() {
     if (currentEditIndex !== -1) {
-        // Restore the trade that was being edited
+        // Kembalikan data dari localStorage
         const originalTrades = JSON.parse(localStorage.getItem(`trades_${currentUser}`)) || [];
-        if (originalTrades[currentEditIndex]) {
-            trades.splice(currentEditIndex, 0, originalTrades[currentEditIndex]);
-            localStorage.setItem(`trades_${currentUser}`, JSON.stringify(trades));
-        }
+        trades = [...originalTrades]; // Buat salinan baru
+    }
     }
     
     resetTradeForm();
