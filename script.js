@@ -341,8 +341,9 @@ function resetTradeForm() {
 
 // Edit Trade
 function editTrade(index) {
-    const trade = trades[index];
+    switchTab('journal');
     currentEditIndex = index;
+    const trade = trades.splice(index, 1)[0];
     
     // Fill form with trade data
     elements.tradeDate.value = trade.date;
@@ -382,6 +383,7 @@ function editTrade(index) {
     calculateTradeResults();
     
     // Scroll to form
+    document.getElementById('trade-form').classList.add('edit-mode');
     document.getElementById('journal').scrollIntoView({ behavior: 'smooth' });
 }
 
