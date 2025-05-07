@@ -401,7 +401,6 @@ function cancelEditTrade() {
         const originalTrades = JSON.parse(localStorage.getItem(`trades_${currentUser}`)) || [];
         trades = [...originalTrades]; // Buat salinan baru
     }
-    }
     
     resetTradeForm();
     loadTrades();
