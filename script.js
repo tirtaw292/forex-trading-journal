@@ -251,7 +251,7 @@ function calculateTradeResults() {
         } else if (pair.startsWith('XAG')) {
             pnl = pips * 50 * size; // $50 per pip per standard lot for Silver
         } else if (isJPY) {
-            pnl = pips * 0.9 * size; // ~$9 per pip per standard lot for JPY pairs
+            pnl = pips * 7 * size; // ~$7 per pip per standard lot for JPY pairs
         } else {
             pnl = pips * 10 * size; // $10 per pip per standard lot
         }
