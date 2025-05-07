@@ -555,6 +555,21 @@ select option {
     padding: 5px;
 }
 
+/* Edit Mode Styles */
+.edit-mode {
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+#edit-indicator {
+    background-color: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
